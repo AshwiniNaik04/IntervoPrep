@@ -1,0 +1,22 @@
+.register-footer {
+  margin-top: 22px;
+  text-align: center;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.register-footer a {
+  color: #6366f1;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.25s ease;
+}
+
+.register-footer a:hover {
+  color: #4f46e5;
+  text-decoration: none;
+}
+
+.register-footer a:visited {
+  color: #6366f1;
+}
