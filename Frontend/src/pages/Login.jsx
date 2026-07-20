@@ -31,8 +31,7 @@ function Login() {
       const data = await loginUser(formData);
 
       localStorage.setItem("token", data.token);
-
-      alert(data.message);
+      localStorage.setItem("user", JSON.stringify(data.user));
 
       navigate("/dashboard");
 
