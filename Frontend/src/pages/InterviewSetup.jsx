@@ -20,10 +20,7 @@ function InterviewSetup() {
     };
 
     const handleStartInterview = () => {
-        console.log(formData);
-
-        // Later we will send this data to the backend
-        // navigate("/interview");
+        navigate("/interview");
     };
 
     return (

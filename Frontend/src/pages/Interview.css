@@ -1,0 +1,66 @@
+.interview-container {
+  min-height: 100vh;
+  background: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.interview-card {
+  width: 100%;
+  max-width: 900px;
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.interview-card h3 {
+  color: #6366f1;
+  margin-bottom: 20px;
+}
+
+.interview-card h2 {
+  color: #0f172a;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.interview-card textarea {
+  width: 100%;
+  min-height: 220px;
+  resize: vertical;
+  padding: 18px;
+  font-size: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  outline: none;
+  margin-bottom: 30px;
+  font-family: inherit;
+}
+
+.interview-card textarea:focus {
+  border-color: #6366f1;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-group button {
+  background: #6366f1;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.button-group button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

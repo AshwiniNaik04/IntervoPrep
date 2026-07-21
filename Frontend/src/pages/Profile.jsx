@@ -1,14 +1,26 @@
 import "./Profile.css";
 import Navbar from "../components/Navbar/Navbar";
+import { useNavigate } from "react-router-dom";
+import { IoArrowBack } from "react-icons/io5";
 
 function Profile() {
   const user = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate();
 
   return (
     <>
       <Navbar />
 
       <div className="profile-container">
+
+        <button
+          className="back-btn"
+          onClick={() => navigate("/dashboard")}
+          title="Back to Dashboard"
+        >
+          <IoArrowBack />
+        </button>
+
         <div className="profile-card">
 
           <div className="profile-avatar">
