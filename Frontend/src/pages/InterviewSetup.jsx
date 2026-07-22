@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./InterviewSetup.css";
 
@@ -19,8 +20,33 @@ function InterviewSetup() {
         }));
     };
 
-    const handleStartInterview = () => {
-        navigate("/interview");
+    const handleStartInterview = async () => {
+        if (!formData.role.trim()) {
+            alert("Please enter a job role.");
+            return;
+        }
+
+        try {
+            const response = await axios.post(
+                "http://localhost:5000/api/interview/generate",
+                formData
+            );
+
+            navigate("/interview", {
+                state: {
+                    questions: response.data.questions,
+                },
+            });
+        } catch (error) {
+            console.error(error);
+
+            if (error.response) {
+                console.log(error.response.data);
+                alert(error.response.data.message || "Something went wrong.");
+            } else {
+                alert(error.message);
+            }
+        }
     };
 
     return (

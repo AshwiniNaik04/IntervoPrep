@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import "./Interview.css";
 
 function Interview() {
   // Later this will come from the backend (Gemini)
-  const [questions] = useState([]);
+  const location = useLocation();
+
+  const questions = location.state?.questions || [];
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
@@ -16,6 +19,24 @@ function Interview() {
     });
   };
 
+  const [timeLeft, setTimeLeft] = useState(30 * 60);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = String(timeLeft % 60).padStart(2, "0");
   const handleNext = () => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
@@ -29,6 +50,7 @@ function Interview() {
   };
 
   const handleFinish = () => {
+    alert("Interview Completed!");
     console.log(answers);
   };
 
@@ -46,17 +68,42 @@ function Interview() {
   return (
     <div className="interview-container">
       <div className="interview-card">
-        <h3>
-          Question {currentQuestion + 1} / {questions.length}
-        </h3>
+        <div className="interview-header">
+          <h2>Interview Session</h2>
 
-        <h2>{questions[currentQuestion].question}</h2>
+          <div className="timer">
+            ⏱ {minutes}:{seconds}
+          </div>
+        </div>
+
+        <div className="progress-text">
+          Question {currentQuestion + 1} of {questions.length}
+        </div>
+
+        <div className="progress-bar">
+          <div
+            className="progress-fill"
+            style={{
+              width: `${((currentQuestion + 1) / questions.length) * 100}%`,
+            }}
+          ></div>
+        </div>
+
+        <div className="question-card">
+          <h3>Question {currentQuestion + 1}</h3>
+
+          <p>{questions[currentQuestion].question}</p>
+        </div>
 
         <textarea
           placeholder="Type your answer here..."
           value={answers[currentQuestion] || ""}
           onChange={handleAnswerChange}
         />
+
+        <div className="character-count">
+          {(answers[currentQuestion] || "").length} Characters
+        </div>
 
         <div className="button-group">
           <button
@@ -67,11 +114,17 @@ function Interview() {
           </button>
 
           {currentQuestion === questions.length - 1 ? (
-            <button onClick={handleFinish}>
+            <button
+              className="finish-btn"
+              onClick={handleFinish}
+            >
               Finish Interview
             </button>
           ) : (
-            <button onClick={handleNext}>
+            <button
+              className="next-btn"
+              onClick={handleNext}
+            >
               Next
             </button>
           )}
