@@ -1,0 +1,175 @@
+.resume-container {
+    min-height: 100vh;
+    background: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.resume-card {
+    width: 100%;
+    max-width: 700px;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
+    text-align: center;
+}
+
+.resume-card h1 {
+    color: #0f172a;
+}
+
+.resume-card p {
+    color: #64748b;
+    margin-top: 10px;
+}
+
+.upload-box {
+    margin-top: 35px;
+    border: 2px dashed #cbd5e1;
+    border-radius: 18px;
+    padding: 40px 30px;
+    transition: .3s;
+}
+
+.upload-box:hover {
+    border-color: #6366f1;
+}
+
+.pdf-icon {
+    font-size: 70px;
+    margin-bottom: 15px;
+}
+
+.upload-box h3 {
+    color: #0f172a;
+}
+
+.upload-box span {
+    display: block;
+    margin: 15px 0;
+    color: #64748b;
+}
+
+.choose-btn {
+    display: inline-block;
+    background: #6366f1;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.choose-btn:hover {
+    background: #4f46e5;
+}
+
+.file-info {
+    margin-top: 25px;
+    padding: 18px;
+    background: #f8fafc;
+    border-radius: 12px;
+}
+
+.file-info h4 {
+    margin-bottom: 8px;
+    color: #0f172a;
+}
+
+.file-info p {
+    color: #334155;
+    font-weight: 600;
+}
+
+.no-file {
+    margin-top: 20px;
+    color: #94a3b8;
+}
+
+.upload-btn {
+    width: 100%;
+    margin-top: 25px;
+    height: 48px;
+    border: none;
+    border-radius: 10px;
+    background: #6366f1;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.upload-btn:hover {
+    background: #4f46e5;
+}
+
+.support-text {
+    display: block;
+    margin-top: 20px;
+    color: #94a3b8;
+}
+
+.header-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.back-arrow {
+    font-size: 28px;
+    cursor: pointer;
+    color: #6366f1;
+    transition: 0.3s;
+    line-height: 1;
+}
+
+.back-arrow:hover {
+    color: #4f46e5;
+    transform: translateX(-4px);
+}
+
+.header-row h1 {
+    margin: 0;
+}
+
+.selected-title {
+    color: #16a34a;
+    margin-bottom: 10px;
+}
+
+.file-name {
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.file-size {
+    display: block;
+    margin-top: 5px;
+    color: #64748b;
+}
+
+.upload-btn:disabled {
+    background: #cbd5e1;
+    cursor: not-allowed;
+}
+
+.security-note {
+    margin-top: 18px;
+    font-size: 14px;
+    color: #64748b;
+    line-height: 22px;
+}
+
+@media (max-width: 768px) {
+    .resume-card {
+        padding: 25px;
+    }
+
+    .upload-box {
+        padding: 30px 20px;
+    }
+}

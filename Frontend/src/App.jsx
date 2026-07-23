@@ -4,12 +4,12 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import InterviewSetup from "./pages/InterviewSetup";
-import Resume from "./pages/Resume";
 import History from "./pages/History";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Profile from "./pages/Profile";
 import Interview from "./pages/Interview";
 import Result from "./pages/Result";
+import ResumeUpload from "./pages/ResumeUpload";
 
 function App() {
   return (
@@ -42,7 +42,7 @@ function App() {
         path="/resume"
         element={
           <ProtectedRoute>
-            <Resume />
+            <ResumeUpload />
           </ProtectedRoute>
         }
       />
@@ -75,6 +75,7 @@ function App() {
       />
 
       <Route path="/result" element={<Result />} />
+    
     </Routes>
   );
 }
