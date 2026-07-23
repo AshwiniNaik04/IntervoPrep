@@ -1,10 +1,12 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Interview.css";
 
 function Interview() {
   // Later this will come from the backend (Gemini)
   const location = useLocation();
+  const navigate = useNavigate();
 
   const questions = location.state?.questions || [];
 
@@ -49,9 +51,25 @@ function Interview() {
     }
   };
 
-  const handleFinish = () => {
-    alert("Interview Completed!");
-    console.log(answers);
+  const handleFinish = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/evaluate",
+        {
+          questions,
+          answers,
+        }
+      );
+
+      navigate("/result", {
+        state: response.data,
+      });
+
+    } catch (error) {
+      console.error(error);
+
+      alert("Failed to evaluate interview.");
+    }
   };
 
   if (questions.length === 0) {

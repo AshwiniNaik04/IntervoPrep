@@ -7,6 +7,7 @@ const cors = require("cors");
 const interviewRoutes = require("./routes/interviewRoutes");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
+const evaluationRoutes = require("./routes/evaluationRoutes");
 
 connectDB();
 
@@ -19,6 +20,7 @@ app.use(express.json());
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/interview", interviewRoutes);
+app.use("/api/evaluate", evaluationRoutes);
 // Test Route
 app.get("/", (req, res) => {
     res.send("IntervoPrep Backend Running");

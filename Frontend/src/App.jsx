@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -9,6 +9,7 @@ import History from "./pages/History";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Profile from "./pages/Profile";
 import Interview from "./pages/Interview";
+import Result from "./pages/Result";
 
 function App() {
   return (
@@ -72,6 +73,8 @@ function App() {
           </ProtectedRoute>
         }
       />
+
+      <Route path="/result" element={<Result />} />
     </Routes>
   );
 }
