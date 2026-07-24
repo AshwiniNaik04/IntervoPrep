@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
+import axios from "axios";
 import "./ResumeUpload.css";
 
 function ResumeUpload() {
@@ -16,13 +17,40 @@ function ResumeUpload() {
         }
     };
 
-    const handleUpload = () => {
+    const handleUpload = async () => {
         if (!selectedFile) {
-            alert("Please select a resume first.");
+            alert("Please select a resume first!");
             return;
         }
 
-        alert("Resume ready to upload!");
+        try {
+            const formData = new FormData();
+
+            formData.append("resume", selectedFile);
+
+            const token = localStorage.getItem("token");
+
+            const response = await axios.post(
+                "http://localhost:5000/api/resume/upload",
+                formData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
+
+            alert(response.data.message);
+
+        } catch (error) {
+            console.error(error);
+
+            alert(
+                error.response?.data?.message ||
+                "Resume upload failed!"
+            );
+        }
     };
 
     return (
