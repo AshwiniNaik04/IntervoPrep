@@ -8,6 +8,7 @@ const upload = require("../middleware/uploadMiddleware");
 const {
     uploadResume,
     getResume,
+    generateResumeInterview,
 } = require("../controllers/resumeController");
 
 router.post(
@@ -15,6 +16,12 @@ router.post(
     protect,
     upload.single("resume"),
     uploadResume
+);
+
+router.post(
+    "/generate-interview",
+    protect,
+    generateResumeInterview
 );
 
 router.get(
