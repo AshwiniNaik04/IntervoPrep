@@ -10,6 +10,8 @@ import Profile from "./pages/Profile";
 import Interview from "./pages/Interview";
 import Result from "./pages/Result";
 import ResumeUpload from "./pages/ResumeUpload";
+import ResumeReady from "./pages/ResumeReady";
+import ResumeLoading from "./pages/ResumeLoading";
 
 function App() {
   return (
@@ -75,7 +77,24 @@ function App() {
       />
 
       <Route path="/result" element={<Result />} />
-    
+
+      <Route
+        path="/resume-ready"
+        element={
+          <ProtectedRoute>
+            <ResumeReady />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/resume-loading"
+        element={
+          <ProtectedRoute>
+            <ResumeLoading />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }

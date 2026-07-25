@@ -41,7 +41,7 @@ function ResumeUpload() {
                 }
             );
 
-            alert(response.data.message);
+            navigate("/resume-ready");
 
         } catch (error) {
             console.error(error);

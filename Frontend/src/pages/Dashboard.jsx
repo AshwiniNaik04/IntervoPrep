@@ -58,7 +58,7 @@ function Dashboard() {
               title="Resume Uploaded"
               description="Your resume has been uploaded successfully! Generate personalized interview questions based on your resume."
               buttonText="Generate Resume Interview"
-              onClick={() => alert("Resume Interview Coming Soon")}
+              onClick={() => navigate("/resume-ready")}
             />
           ) : (
             <DashboardCard

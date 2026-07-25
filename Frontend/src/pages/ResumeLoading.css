@@ -1,0 +1,119 @@
+.loading-container {
+    min-height: 100vh;
+    background: #f5f7fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.loading-card {
+    width: 100%;
+    max-width: 700px;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+.loader {
+    font-size: 60px;
+    color: #2563eb;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-card h1 {
+    color: #1e293b;
+    margin-bottom: 12px;
+    font-size: 30px;
+}
+
+.loading-subtitle {
+    color: #64748b;
+    font-size: 16px;
+    margin-bottom: 35px;
+    line-height: 1.6;
+}
+
+.loading-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+    margin-bottom: 35px;
+}
+
+.loading-step {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 18px;
+    background: #f8fafc;
+    border-radius: 10px;
+    color: #94a3b8;
+    transition: 0.3s ease;
+}
+
+.loading-step.active {
+    background: #e8f0ff;
+    color: #2563eb;
+    font-weight: 600;
+    transform: translateX(5px);
+}
+
+.step-icon {
+    width: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.completed-icon {
+    color: #22c55e;
+    font-size: 16px;
+}
+
+.current-icon {
+    color: #2563eb;
+    font-size: 16px;
+    animation: spin 1s linear infinite;
+}
+
+.pending-icon {
+    color: #cbd5e1;
+    font-size: 16px;
+}
+
+.loading-footer {
+    color: #64748b;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}

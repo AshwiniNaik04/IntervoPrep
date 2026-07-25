@@ -1,5 +1,9 @@
 import "./Result.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import {
+    FaCheckCircle,
+    FaExclamationCircle,
+} from "react-icons/fa";
 
 function Result() {
     const location = useLocation();
@@ -48,7 +52,10 @@ function Result() {
 
                     <ul>
                         {result.strengths.map((item, index) => (
-                            <li key={index}>✅ {item}</li>
+                            <li key={index}>
+                                <FaCheckCircle className="strength-icon" />
+                                {item}
+                            </li>
                         ))}
                     </ul>
                 </div>
@@ -58,7 +65,10 @@ function Result() {
 
                     <ul>
                         {result.improvements.map((item, index) => (
-                            <li key={index}>📌 {item}</li>
+                            <li key={index}>
+                                <FaExclamationCircle className="improvement-icon" />
+                                {item}
+                            </li>
                         ))}
                     </ul>
                 </div>
