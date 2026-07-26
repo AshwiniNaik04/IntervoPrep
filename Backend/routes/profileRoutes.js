@@ -2,8 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 const protect = require("../middleware/authMiddleware");
-const { evaluate } = require("../controllers/evaluationController");
 
-router.post("/", protect, evaluate);
+const {
+    getProfile,
+} = require("../controllers/profileController");
+
+router.get("/", protect, getProfile);
 
 module.exports = router;
