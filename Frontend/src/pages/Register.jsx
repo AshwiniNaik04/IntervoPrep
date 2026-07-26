@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import toast from "react-hot-toast";
 import { registerUser } from "../services/authService";
 import AuthLayout from "../components/AuthLayout/AuthLayout";
 import Input from "../components/Input/Input";
@@ -28,7 +28,7 @@ function Register() {
         e.preventDefault();
 
         if (formData.password !== formData.confirmPassword) {
-            alert("Passwords do not match");
+            toast.error("Passwords do not match");
             return;
         }
 
@@ -39,12 +39,12 @@ function Register() {
                 password: formData.password,
             });
 
-            alert(data.message);
+            toast.success(data.message);
 
             navigate("/login");
 
         } catch (error) {
-            alert(
+            toast.error(
                 error.response?.data?.message || "Registration failed"
             );
         }
@@ -102,12 +102,12 @@ function Register() {
                 />
             </form>
 
-                <p className="register-footer">
+            <p className="register-footer">
                 Already have an account?{" "}
                 <Link to="/login">
                     Login
                 </Link>
-                </p>
+            </p>
         </AuthLayout>
     );
 }

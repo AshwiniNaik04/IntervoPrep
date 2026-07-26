@@ -56,7 +56,7 @@ function ResumeLoading() {
             } catch (error) {
                 console.error(error);
 
-                alert(
+                toast.error(
                     error.response?.data?.message ||
                     "Unable to generate your interview."
                 );

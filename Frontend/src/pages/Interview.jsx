@@ -2,13 +2,16 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Interview.css";
+import toast from "react-hot-toast";
 
 function Interview() {
-  // Later this will come from the backend (Gemini)
+
   const location = useLocation();
   const navigate = useNavigate();
-
+  
   const questions = location.state?.questions || [];
+  const interviewType = location.state?.interviewType || "Role";
+  const role = location.state?.role || "";
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
@@ -53,11 +56,21 @@ function Interview() {
 
   const handleFinish = async () => {
     try {
+      const token = localStorage.getItem("token");
+
       const response = await axios.post(
         "http://localhost:5000/api/evaluate",
         {
           questions,
           answers,
+          interviewType:
+            interviewType === "resume" ? "Resume" : "Role",
+          role,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
 
@@ -68,7 +81,7 @@ function Interview() {
     } catch (error) {
       console.error(error);
 
-      alert("Failed to evaluate interview.");
+      toast.error("Failed to evaluate interview.");
     }
   };
 

@@ -23,6 +23,14 @@ function Result() {
         <div className="result-container">
             <div className="result-card">
                 <h1>Interview Results</h1>
+                <p className="interview-type">
+                    {result.interviewType || "Interview"}
+                </p>
+                {result.createdAt && (
+                    <p className="result-date">
+                        {new Date(result.createdAt).toLocaleString()}
+                    </p>
+                )}
                 <p>Your AI interview has been completed successfully.</p>
 
                 <div className="score-circle">
@@ -51,7 +59,7 @@ function Result() {
                     <h2>Strengths</h2>
 
                     <ul>
-                        {result.strengths.map((item, index) => (
+                        {result.strengths?.map((item, index) => (
                             <li key={index}>
                                 <FaCheckCircle className="strength-icon" />
                                 {item}
@@ -64,7 +72,7 @@ function Result() {
                     <h2>Areas to Improve</h2>
 
                     <ul>
-                        {result.improvements.map((item, index) => (
+                        {result.improvements?.map((item, index) => (
                             <li key={index}>
                                 <FaExclamationCircle className="improvement-icon" />
                                 {item}
@@ -80,7 +88,7 @@ function Result() {
                 </div>
 
                 <div className="result-buttons">
-                    <button onClick={() => navigate("/setup")}>
+                    <button onClick={() => navigate("/interview-setup")}>
                         Take Another Interview
                     </button>
 

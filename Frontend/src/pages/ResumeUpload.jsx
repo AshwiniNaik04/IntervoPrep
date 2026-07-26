@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
 import axios from "axios";
 import "./ResumeUpload.css";
+import toast from "react-hot-toast";
 
 function ResumeUpload() {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ function ResumeUpload() {
 
     const handleUpload = async () => {
         if (!selectedFile) {
-            alert("Please select a resume first!");
+            toast.error("Please select a resume first!");
             return;
         }
 
@@ -46,7 +47,7 @@ function ResumeUpload() {
         } catch (error) {
             console.error(error);
 
-            alert(
+            toast.error(
                 error.response?.data?.message ||
                 "Resume upload failed!"
             );
