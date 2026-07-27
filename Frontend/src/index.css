@@ -16,3 +16,13 @@ body {
   font-family: "Poppins", sans-serif;
   color: #0f172a;
 }
+
+:root {
+  --bg: #f1f5f9;
+  --card: #ffffff;
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --text: #0f172a;
+  --text-light: #64748b;
+  --border: #e2e8f0;
+}
