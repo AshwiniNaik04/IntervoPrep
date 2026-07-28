@@ -173,3 +173,21 @@
         padding: 30px 20px;
     }
 }
+
+.upload-box {
+    transition: .3s ease;
+}
+
+.upload-box.drag-active {
+    border: 2px dashed #6366f1;
+    background: #eef2ff;
+    transform: scale(1.02);
+}
+
+.upload-box.drag-active .pdf-icon {
+    transform: scale(1.15);
+}
+
+.pdf-icon {
+    transition: .3s ease;
+}

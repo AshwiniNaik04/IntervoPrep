@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
 import axios from "axios";
@@ -9,6 +9,32 @@ function ResumeUpload() {
     const navigate = useNavigate();
 
     const [selectedFile, setSelectedFile] = useState(null);
+    const [hasResume, setHasResume] = useState(false);
+    const [uploading, setUploading] = useState(false);
+    const [dragActive, setDragActive] = useState(false);
+    useEffect(() => {
+        const fetchResume = async () => {
+            try {
+                const token = localStorage.getItem("token");
+
+                await axios.get(
+                    "http://localhost:5000/api/resume",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+
+                setHasResume(true);
+
+            } catch (error) {
+                setHasResume(false);
+            }
+        };
+
+        fetchResume();
+    }, []);
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -17,7 +43,37 @@ function ResumeUpload() {
             setSelectedFile(file);
         }
     };
+    const handleDragOver = (e) => {
+        e.preventDefault();
+        setDragActive(true);
+    };
 
+    const handleDragLeave = (e) => {
+        e.preventDefault();
+        setDragActive(false);
+    };
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+
+        setDragActive(false);
+
+        const file = e.dataTransfer.files[0];
+
+        if (!file) return;
+
+        if (file.type !== "application/pdf") {
+            toast.error("Only PDF files are allowed.");
+            return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+            toast.error("Maximum file size is 5 MB.");
+            return;
+        }
+
+        setSelectedFile(file);
+    };
     const handleUpload = async () => {
         if (!selectedFile) {
             toast.error("Please select a resume first!");
@@ -26,7 +82,7 @@ function ResumeUpload() {
 
         try {
             const formData = new FormData();
-
+            setUploading(true);
             formData.append("resume", selectedFile);
 
             const token = localStorage.getItem("token");
@@ -43,7 +99,11 @@ function ResumeUpload() {
             );
 
             navigate("/resume-ready");
-
+            toast.success(
+                hasResume
+                    ? "Resume replaced successfully!"
+                    : "Resume uploaded successfully!"
+            );
         } catch (error) {
             console.error(error);
 
@@ -51,6 +111,9 @@ function ResumeUpload() {
                 error.response?.data?.message ||
                 "Resume upload failed!"
             );
+        }
+        finally {
+            setUploading(false);
         }
     };
 
@@ -67,15 +130,23 @@ function ResumeUpload() {
 
             <div className="resume-card">
 
-                <h1>Resume Manager</h1>
-
-
+                <h1>
+                    {hasResume
+                        ? "Replace Resume"
+                        : "Upload Resume"}
+                </h1>
                 <p>
-                    Upload your latest resume to receive personalized AI interview
-                    questions.
+                    {hasResume
+                        ? "Uploading a new resume will replace your existing one and be used for future AI interviews."
+                        : "Upload your resume to receive personalized AI interview questions."}
                 </p>
 
-                <div className="upload-box">
+                <div
+                    className={`upload-box ${dragActive ? "drag-active" : ""}`}
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                >
 
                     <div className="pdf-icon">📄</div>
 
@@ -118,10 +189,16 @@ function ResumeUpload() {
 
                     <button
                         className="upload-btn"
-                        disabled={!selectedFile}
+                        disabled={!selectedFile || uploading}
                         onClick={handleUpload}
                     >
-                        {selectedFile ? "Upload Resume" : "Select a Resume First"}
+                        {uploading
+                            ? "Uploading..."
+                            : selectedFile
+                                ? hasResume
+                                    ? "Replace Resume"
+                                    : "Upload Resume"
+                                : "Select a Resume First"}
                     </button>
 
                     <p className="security-note">

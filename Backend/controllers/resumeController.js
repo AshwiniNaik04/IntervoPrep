@@ -1,4 +1,5 @@
 const Resume = require("../models/Resume");
+const cloudinary = require("../config/cloudinary");
 
 const uploadResume = async (req, res) => {
     try {
@@ -14,10 +15,21 @@ const uploadResume = async (req, res) => {
         });
 
         if (resume) {
+
+            if (resume.publicId) {
+                await cloudinary.uploader.destroy(
+                    resume.publicId,
+                    {
+                        resource_type: "raw",
+                    }
+                );
+            }
+
             resume.resumeUrl = req.file.path;
             resume.publicId = req.file.filename;
 
             await resume.save();
+
         } else {
             resume = await Resume.create({
                 user: req.user.id,
