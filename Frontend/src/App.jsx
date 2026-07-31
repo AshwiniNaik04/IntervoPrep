@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 
+import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
@@ -16,12 +17,12 @@ import ResumeLoading from "./pages/ResumeLoading";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/login" />} />
+      <Route path="/" element={<LandingPage />} />
 
       <Route path="/login" element={<Login />} />
 
-      <Route path="/register" element={<Register />} />
-
+      <Route path="/signup" element={<Register />} />
+      
       <Route
         path="/dashboard"
         element={

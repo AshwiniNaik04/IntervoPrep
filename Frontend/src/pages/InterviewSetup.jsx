@@ -27,9 +27,16 @@ function InterviewSetup() {
         }
 
         try {
+            const token = localStorage.getItem("token");
+
             const response = await axios.post(
                 "http://localhost:5000/api/interview/generate",
-                formData
+                formData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
             );
 
             navigate("/interview", {
