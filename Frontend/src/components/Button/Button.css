@@ -1,27 +1,50 @@
 .custom-btn {
   width: 100%;
-  padding: 14px;
+  padding: 14px 20px;
+
   border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 14px;
+
+  background: linear-gradient(
+    135deg,
+    #6366f1 0%,
+    #7c3aed 55%,
+    #8b5cf6 100%
+  );
+
   color: white;
+
   font-size: 15px;
   font-weight: 600;
+  letter-spacing: 0.3px;
+
   cursor: pointer;
-  transition: all 0.3s ease;
+
+  transition: all .3s ease;
+
+  box-shadow:
+    0 8px 20px rgba(99,102,241,.30);
 }
 
-.custom-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.25);
+.custom-btn:hover{
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 15px 35px rgba(99,102,241,.45);
+
+  filter: brightness(1.05);
 }
 
-.custom-btn:active {
-  transform: translateY(0);
+.custom-btn:active{
+  transform: translateY(-1px) scale(.98);
 }
 
-.custom-btn:disabled {
-  background: #94a3b8;
-  cursor: not-allowed;
-  box-shadow: none;
+.custom-btn:disabled{
+  background:#475569;
+
+  cursor:not-allowed;
+
+  box-shadow:none;
+
+  opacity:.7;
 }

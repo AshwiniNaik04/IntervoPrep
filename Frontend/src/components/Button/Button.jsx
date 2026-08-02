@@ -5,10 +5,11 @@ function Button({
   type = "button",
   onClick,
   disabled = false,
+  className = "",
 }) {
   return (
     <button
-      className="custom-btn"
+      className={`custom-btn ${className}`}
       type={type}
       onClick={onClick}
       disabled={disabled}

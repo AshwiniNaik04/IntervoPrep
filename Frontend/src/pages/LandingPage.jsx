@@ -53,8 +53,8 @@ function LandingPage() {
                     </h1>
 
                     <p>
-                        Practice personalized mock interviews, receive instant AI
-                        feedback, upload your resume, and prepare with confidence.
+                        Prepare smarter with AI-powered mock interviews, personalized resume-based
+                        questions, instant feedback, and role-specific interview practice—all in one place.
                     </p>
 
                     <div className="hero-buttons">
@@ -65,50 +65,6 @@ function LandingPage() {
                         >
                             Get Started
                         </button>
-
-                        <button
-                            className="secondary-btn"
-                            onClick={() => navigate("/login")}
-                        >
-                            Login
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <div className="hero-right">
-
-                    <div className="preview-card">
-
-                        <h3>AI Interview Score</h3>
-
-                        <div className="score">
-                            92%
-                        </div>
-
-                        <div className="progress">
-                            <div className="fill"></div>
-                        </div>
-
-                        <div className="preview-stats">
-
-                            <div>
-                                <h4>15</h4>
-                                <span>Questions</span>
-                            </div>
-
-                            <div>
-                                <h4>4</h4>
-                                <span>Interviews</span>
-                            </div>
-
-                            <div>
-                                <h4>AI</h4>
-                                <span>Feedback</span>
-                            </div>
-
-                        </div>
 
                     </div>
 
