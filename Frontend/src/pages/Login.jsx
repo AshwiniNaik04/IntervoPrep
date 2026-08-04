@@ -76,7 +76,7 @@ function Login() {
 
       <p className="login-footer">
         Don't have an account?{" "}
-        <Link to="/register">
+        <Link to="/signup">
           Register
         </Link>
       </p>
