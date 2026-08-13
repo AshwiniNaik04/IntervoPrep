@@ -8,7 +8,8 @@ import Button from "../components/Button/Button";
 import "./Register.css";
 
 function Register() {
-
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: "",
@@ -78,22 +79,28 @@ function Register() {
 
                 <Input
                     label="Password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
                     placeholder="Enter your password"
+                    minLength={8}
                     required
+                    showPassword={showPassword}
+                    setShowPassword={setShowPassword}
                 />
 
                 <Input
                     label="Confirm Password"
-                    type="password"
+                    type={showConfirmPassword ? "text" : "password"}
                     name="confirmPassword"
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     placeholder="Confirm your password"
+                    minLength={8}
                     required
+                    showPassword={showConfirmPassword}
+                    setShowPassword={setShowConfirmPassword}
                 />
 
                 <Button

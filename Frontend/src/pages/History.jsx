@@ -2,20 +2,17 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./History.css";
+import Navbar from "../components/Navbar/Navbar";
 
 function History() {
-
   const navigate = useNavigate();
 
   const [interviews, setInterviews] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-
     const fetchHistory = async () => {
-
       try {
-
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
@@ -28,92 +25,106 @@ function History() {
         );
 
         setInterviews(response.data.interviews);
-
       } catch (error) {
-
         console.error(error);
-
       } finally {
-
         setLoading(false);
-
       }
     };
 
     fetchHistory();
-
   }, []);
 
   if (loading) {
     return (
-      <div className="history-container">
-        <h2>Loading interview history...</h2>
-      </div>
+      <>
+        <Navbar />
+
+        <div className="history-container loading-history">
+          <div className="loading-spinner"></div>
+          <p>Loading your interview history...</p>
+        </div>
+      </>
     );
   }
 
   return (
-    <div className="history-container">
+    <>
+      <Navbar />
 
-      <h1>Interview History</h1>
-
-      {interviews.length === 0 ? (
-
-        <div className="empty-history">
-
-          <h2>No Interviews Yet</h2>
+      <div className="history-container">
+        <div className="history-header">
+          <h1>Interview History</h1>
 
           <p>
-            Complete your first AI interview to see your history here.
+            Review your previous interviews and track your progress.
           </p>
-
         </div>
 
-      ) : (
+        {interviews.length === 0 ? (
+          <div className="empty-history">
+            <div className="empty-icon">🎯</div>
 
-        <div className="history-grid">
+            <h2>No Interviews Yet</h2>
 
-          {interviews.map((item) => (
+            <p>
+              Complete your first AI interview to start tracking
+              your performance here.
+            </p>
 
-            <div
-              className="history-card"
-              key={item._id}
+            <button
+              className="view-btn empty-btn"
+              onClick={() => navigate("/interview-setup")}
             >
-
-              <h2>{item.interviewType} Interview</h2>
-
-              <p className="history-date">
-                {new Date(item.createdAt).toLocaleDateString()}
-              </p>
-
-              <div className="history-score">
-
-                <span>Overall Score</span>
-
-                <h3>{item.overallScore}%</h3>
-
-              </div>
-
-              <button
-                className="view-btn"
-                onClick={() =>
-                  navigate("/result", {
-                    state: item,
-                  })
-                }
+              Start Your First Interview
+            </button>
+          </div>
+        ) : (
+          <div className="history-grid">
+            {interviews.map((item) => (
+              <div
+                className="history-card"
+                key={item._id}
               >
-                View Result
-              </button>
+                <h2>
+                  {item.interviewType} Interview
+                </h2>
 
-            </div>
+                <p className="history-date">
+                  {new Date(item.createdAt).toLocaleDateString(
+                    "en-IN",
+                    {
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric",
+                    }
+                  )}
+                </p>
 
-          ))}
+                <div className="history-score">
+                  <span>Overall Score</span>
 
-        </div>
+                  <h3>
+                    {item.overallScore}%
+                  </h3>
+                </div>
 
-      )}
-
-    </div>
+                <button
+                  className="view-btn"
+                  onClick={() =>
+                    navigate("/result", {
+                      state: item,
+                    })
+                  }
+                >
+                  View Result
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 

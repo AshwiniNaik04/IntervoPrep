@@ -38,7 +38,7 @@ function Profile() {
   return (
     <>
       <Navbar />
-
+      <div className="profile-page">
       <div className="profile-container">
 
         <button
@@ -132,6 +132,7 @@ function Profile() {
           </div>
 
         </div>
+      </div>
       </div>
     </>
   );
