@@ -63,8 +63,6 @@ function History() {
 
         {interviews.length === 0 ? (
           <div className="empty-history">
-            <div className="empty-icon">🎯</div>
-
             <h2>No Interviews Yet</h2>
 
             <p>
