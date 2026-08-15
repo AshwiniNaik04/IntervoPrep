@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./History.css";
+import { IoArrowBack } from "react-icons/io5";
 import Navbar from "../components/Navbar/Navbar";
 
 function History() {
@@ -53,6 +54,13 @@ function History() {
       <Navbar />
 
       <div className="history-container">
+         <button
+          className="back-btn"
+          onClick={() => navigate("/dashboard")}
+          title="Back to Dashboard"
+        >
+          <IoArrowBack />
+        </button>
         <div className="history-header">
           <h1>Interview History</h1>
 

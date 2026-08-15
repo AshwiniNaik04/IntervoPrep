@@ -1,10 +1,7 @@
 .dashboard {
     min-height: calc(100vh - 70px);
-
-    background: #f8fafc;
-
+    background: #ebeef2;
     padding: 40px;
-
     color: #0f172a;
 }
 
@@ -31,8 +28,6 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 25px;
 }
-
-/* Cards */
 
 .card {
     background: rgba(17, 24, 39, .65);

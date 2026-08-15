@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&display=swap');
 
-/* ===========================
-   LANDING PAGE
-=========================== */
-
 * {
   margin: 0;
   padding: 0;
@@ -25,10 +21,6 @@ body {
 
   overflow: hidden;
 }
-
-/* ===========================
-   NAVBAR
-=========================== */
 
 .landing-nav {
   width: 90%;
@@ -90,10 +82,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* ===========================
-   HERO
-=========================== */
-
 .hero {
   width: 90%;
   max-width: 1300px;
@@ -149,10 +137,6 @@ body {
   max-width: 700px;
 }
 
-/* ===========================
-   BUTTONS
-=========================== */
-
 .hero-buttons {
   margin-top: 45px;
 
@@ -198,10 +182,6 @@ body {
 .secondary-btn:hover {
   background: rgba(255, 255, 255, .06);
 }
-
-/* ===========================
-   RESPONSIVE
-=========================== */
 
 @media (max-width:1000px) {
 

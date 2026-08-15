@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./InterviewSetup.css";
+import { IoArrowBack } from "react-icons/io5";
 
 function InterviewSetup() {
     const navigate = useNavigate();
@@ -58,6 +59,13 @@ function InterviewSetup() {
 
     return (
         <div className="setup-container">
+            <button
+                className="back-btn"
+                onClick={() => navigate("/dashboard")}
+                title="Back to Dashboard"
+            >
+                <IoArrowBack />
+            </button>
             <div className="setup-card">
                 <h1>Configure Your Interview</h1>
 

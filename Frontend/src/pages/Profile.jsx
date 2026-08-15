@@ -39,6 +39,10 @@ function Profile() {
     <>
       <Navbar />
       <div className="profile-page">
+         <div className="profile-title">
+        <h1>My Profile</h1>
+        <p>Manage your profile, resume, and interview progress.</p>
+    </div>
       <div className="profile-container">
 
         <button

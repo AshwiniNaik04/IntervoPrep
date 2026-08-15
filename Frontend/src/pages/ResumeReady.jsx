@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 import { IoArrowBack } from "react-icons/io5";
 import "./ResumeReady.css";
+import toast from "react-hot-toast";
 import {
     FaCheckCircle,
     FaCode,
@@ -12,7 +15,37 @@ import {
 
 function ResumeReady() {
     const navigate = useNavigate();
+    const [showDeletePopup, setShowDeletePopup] = useState(false);
+    const handleDeleteResume = async () => {
+        try {
+            const token = localStorage.getItem("token");
 
+            await axios.delete(
+                "http://localhost:5000/api/resume",
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            setShowDeletePopup(false);
+
+            toast.success("Resume deleted successfully!");
+
+            setTimeout(() => {
+                navigate("/profile");
+            }, 1200);
+
+        } catch (error) {
+            console.error("Failed to delete resume:", error);
+
+            toast.error(
+                error.response?.data?.message ||
+                "Failed to delete resume. Please try again."
+            );
+        }
+    };
     return (
         <div className="ready-container">
 
@@ -56,21 +89,67 @@ function ResumeReady() {
                     </ul>
                 </div>
 
-                <button
-                    className="start-btn"
-                    onClick={() => navigate("/resume-loading")}
-                >
-                    Start AI Interview
-                </button>
+                <div className="resume-actions">
 
-                <button
-                    className="replace-btn"
-                    onClick={() => navigate("/resume")}
-                >
-                    Replace Resume
-                </button>
+                    <button
+                        className="start-btn"
+                        onClick={() => navigate("/resume-loading")}
+                    >
+                        Start AI Interview
+                    </button>
 
+                    <div className="secondary-actions">
+
+                        <button
+                            className="replace-btn"
+                            onClick={() => navigate("/resume")}
+                        >
+                            Replace Resume
+                        </button>
+
+                        <button
+                            className="delete-resume-btn"
+                            onClick={() => setShowDeletePopup(true)}
+                        >
+                            Delete Resume
+                        </button>
+
+                    </div>
+
+                </div>
             </div>
+            {showDeletePopup && (
+                <div className="delete-overlay">
+                    <div className="delete-modal">
+
+                        <h3>Delete Resume?</h3>
+
+                        <p>
+                            Are you sure you want to delete your uploaded resume?
+                            You can upload a new one anytime.
+                        </p>
+
+                        <div className="delete-actions">
+
+                            <button
+                                className="cancel-delete-btn"
+                                onClick={() => setShowDeletePopup(false)}
+                            >
+                                Cancel
+                            </button>
+
+                            <button
+                                className="confirm-delete-btn"
+                                onClick={handleDeleteResume}
+                            >
+                                Delete Resume
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+            )}
         </div >
     );
 }

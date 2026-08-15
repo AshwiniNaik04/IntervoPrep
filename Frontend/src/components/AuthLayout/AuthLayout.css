@@ -4,12 +4,10 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background: linear-gradient(
-    135deg,
-    #eef2ff 0%,
-    #f8fafc 45%,
-    #ede9fe 100%
-  );
+  background: linear-gradient(135deg,
+      #eef2ff 0%,
+      #f8fafc 45%,
+      #ede9fe 100%);
 }
 
 .auth-card {
@@ -17,10 +15,18 @@
   max-width: 410px;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 15);
   border-radius: 20px;
   padding: 35px;
-  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.12);
+  transition: .4s;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.42);
+}
+
+.auth-card:hover {
+  transform: translateY(-6px);
+  border-color: #c7d2fe;
+
+  box-shadow: 0 15px 35px rgba(2, 3, 70, 485);
 }
 
 .auth-logo {

@@ -1,6 +1,6 @@
 .resume-container {
     min-height: 100vh;
-    background: #f8fafc;
+    background: #ebeef2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,8 +13,14 @@
     background: white;
     border-radius: 20px;
     padding: 40px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
     text-align: center;
+}
+
+.resume-card:hover {
+    transform: translateY(-6px);
+    transition: .3s;
+    box-shadow: 0 10px 35px rgb(7, 7, 39)
 }
 
 .resume-card h1 {

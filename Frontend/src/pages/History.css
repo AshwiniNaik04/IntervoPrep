@@ -1,9 +1,7 @@
 .history-container {
     min-height: calc(100vh - 64px);
     width: 100%;
-
-    background: #f8fafc;
-
+    background: #ebeef2;
     max-width: none;
     margin: 0;
     padding: 45px 20px;
@@ -182,6 +180,37 @@
     animation: spin 0.8s linear infinite;
 
     margin-bottom: 15px;
+}
+
+.back-btn {
+  position: fixed;
+  top: 95px;
+  left: 35px;
+
+  width: 46px;
+  height: 46px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: white;
+  color: #6366f1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 22px;
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+  transition: .25s;
+}
+
+.back-btn:hover {
+  background: #6366f1;
+  color: white;
+  transform: translateX(-3px);
 }
 
 @keyframes spin {
