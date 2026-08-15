@@ -136,8 +136,48 @@ const getResume = async (req, res) => {
     }
 };
 
+const deleteResume = async (req, res) => {
+    try {
+        const resume = await Resume.findOne({
+            user: req.user.id,
+        });
+
+        if (!resume) {
+            return res.status(404).json({
+                success: false,
+                message: "Resume not found.",
+            });
+        }
+
+        if (resume.publicId) {
+            await cloudinary.uploader.destroy(
+                resume.publicId,
+                {
+                    resource_type: "raw",
+                }
+            );
+        }
+
+        await Resume.findByIdAndDelete(resume._id);
+
+        res.status(200).json({
+            success: true,
+            message: "Resume deleted successfully.",
+        });
+
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            success: false,
+            message: "Failed to delete resume.",
+        });
+    }
+};
+
 module.exports = {
     uploadResume,
     getResume,
     generateResumeInterview,
+    deleteResume,
 };

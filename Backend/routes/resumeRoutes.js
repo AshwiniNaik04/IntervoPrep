@@ -9,6 +9,7 @@ const {
     uploadResume,
     getResume,
     generateResumeInterview,
+    deleteResume,
 } = require("../controllers/resumeController");
 
 router.post(
@@ -28,6 +29,12 @@ router.get(
     "/",
     protect,
     getResume
+);
+
+router.delete(
+    "/",
+    protect,
+    deleteResume
 );
 
 module.exports = router;
