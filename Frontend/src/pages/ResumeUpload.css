@@ -13,14 +13,14 @@
     background: white;
     border-radius: 20px;
     padding: 40px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
     text-align: center;
 }
 
 .resume-card:hover {
     transform: translateY(-6px);
     transition: .3s;
-    box-shadow: 0 10px 35px rgb(7, 7, 39)
+    box-shadow: 0 10px 35px rgb(7, 7, 7, 0.4)
 }
 
 .resume-card h1 {

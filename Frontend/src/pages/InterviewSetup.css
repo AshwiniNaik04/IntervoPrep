@@ -1,37 +1,54 @@
 .setup-container {
     min-height: 100vh;
-    background: #ebeef2;
+    background: #f4f5ff;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+
+    padding: 40px 20px;
 }
 
 .setup-card {
     width: 100%;
     max-width: 500px;
-    background: white;
+
+    background: #ffffff;
+
     padding: 35px;
+
     border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
+
+    border: 1px solid #dbe2ea;
+
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.7);
+
+    transition: all 0.25s ease;
 }
 
 .setup-card:hover {
-    transform: translateY(-6px);
-    transition: .3s;
-    box-shadow: 0 10px 35px rgb(7, 7, 39)
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 27)
 }
 
 .setup-card h1 {
     text-align: center;
+
     margin-bottom: 10px;
+
     color: #0f172a;
 }
 
 .setup-card p {
     text-align: center;
+
     color: #64748b;
+
     margin-bottom: 30px;
+
+    line-height: 1.6;
 }
 
 .form-group {
@@ -40,33 +57,90 @@
 
 .form-group label {
     display: block;
+
     margin-bottom: 8px;
+
     font-weight: 600;
+
     color: #334155;
 }
 
 .form-group input,
 .form-group select {
     width: 100%;
-    padding: 12px;
+
+    padding: 12px 14px;
+
     border-radius: 10px;
+
     border: 1px solid #d1d5db;
+
+    background: #ffffff;
+
+    color: #1e293b;
+
     font-size: 15px;
+
     outline: none;
+
+    transition: all 0.25s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #6366f1;
+
+    box-shadow:
+        0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.form-group input:hover,
+.form-group select:hover {
+    border-color: #a5b4fc;
 }
 
 .start-btn {
     width: 100%;
+
     padding: 14px;
-    background: #6366f1;
-    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #6366f1,
+        #8b5cf6
+    );
+
+    color: #ffffff;
+
     border: none;
+
     border-radius: 10px;
+
     cursor: pointer;
+
     font-size: 16px;
+
     font-weight: 600;
+
+    transition: all 0.25s ease;
+
+    box-shadow:
+        0 8px 18px rgba(99, 102, 241, 0.2);
 }
 
 .start-btn:hover {
-    background: #4f46e5;
+    background: linear-gradient(
+        135deg,
+        #4f46e5,
+        #7c3aed
+    );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 22px rgba(99, 102, 241, 0.28);
+}
+
+.start-btn:active {
+    transform: translateY(0);
 }

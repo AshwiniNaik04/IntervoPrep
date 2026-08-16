@@ -81,10 +81,14 @@ function Result() {
                     </ul>
                 </div>
 
-                <div className="feedback-section">
+                <div className="feedback-section ai-feedback">
                     <h2>AI Feedback</h2>
 
-                    <p>{result.finalFeedback}</p>
+                    <div className="feedback-box">
+                        <p>
+                            {result.finalFeedback || "No AI feedback available."}
+                        </p>
+                    </div>
                 </div>
 
                 <div className="result-buttons">

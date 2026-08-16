@@ -1,229 +1,286 @@
 .interview-container {
-  min-height: 100vh;
-  background: #ebeef2;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 50px 20px;
+    min-height: 100vh;
+    background: #f4f5ff;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 50px 20px;
 }
 
 .interview-card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
-  transition: all 0.3s ease;
+    width: 100%;
+    max-width: 700px;
+    min-height: 600px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+    border: 1px solid #dbe2ea;
+    border-radius: 20px;
+
+    padding: 30px;
+
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.7);
+
+    transition: all 0.3s ease;
 }
 
 .interview-card:hover {
-  border-color: #c4b5fd;
-  box-shadow:
-    0 15px 35px rgba(99, 102, 241, 0.12),
-    0 0 0 4px rgba(99, 102, 241, 0.04);
+  
+
+    box-shadow:
+        0 15px 35px rgba(99, 102, 241, 12);
 }
-
-.interview-card input,
-.interview-card select {
-  width: 100%;
-  padding: 13px 15px;
-
-  background: #f8fafc;
-
-  border: 1px solid #dbe2ea;
-  border-radius: 11px;
-
-  color: #0f172a;
-  font-size: 15px;
-
-  outline: none;
-
-  transition: all 0.25s ease;
-}
-
-.interview-card input:hover,
-.interview-card select:hover {
-  border-color: #a78bfa;
-  background: #ffffff;
-}
-
-.interview-card input:focus,
-.interview-card select:focus {
-  border-color: #6366f1;
-  background: #ffffff;
-
-  box-shadow:
-    0 0 0 3px rgba(99, 102, 241, 0.12),
-    0 6px 15px rgba(99, 102, 241, 0.06);
-}
-
-/* Header */
 
 .interview-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
 }
 
 .interview-header h2 {
-  font-size: 32px;
-  color: #0f172a;
+    font-size: 32px;
+    color: #0f172a;
+    margin: 0;
 }
 
 .timer {
-  background: #eef2ff;
-  color: #4f46e5;
-  padding: 10px 18px;
-  border-radius: 30px;
-  font-weight: 600;
-  font-size: 15px;
+    background: #eef2ff;
+    color: #4f46e5;
+
+    padding: 10px 18px;
+
+    border-radius: 30px;
+
+    font-weight: 600;
+    font-size: 15px;
 }
 
-/* Progress */
-
 .progress-text {
-  color: #64748b;
-  margin-bottom: 10px;
-  font-size: 15px;
+    color: #64748b;
+    margin-bottom: 10px;
+    font-size: 15px;
 }
 
 .progress-bar {
-  width: 100%;
-  height: 10px;
-  background: #e2e8f0;
-  border-radius: 50px;
-  overflow: hidden;
-  margin-bottom: 35px;
+    width: 100%;
+    height: 10px;
+
+    background: #e2e8f0;
+
+    border-radius: 50px;
+    overflow: hidden;
+
+    margin-bottom: 35px;
 }
 
 .progress-fill {
-  height: 100%;
-  background: linear-gradient(to right, #6366f1, #8b5cf6);
-  border-radius: 50px;
-  transition: width 0.4s ease;
+    height: 100%;
+
+    background: linear-gradient(
+        to right,
+        #6366f1,
+        #8b5cf6
+    );
+
+    border-radius: 50px;
+
+    transition: width 0.4s ease;
 }
 
-/* Question Card */
-
 .question-card {
-  background: #f8fafc;
-  border-radius: 16px;
-  padding: 28px;
-  margin-bottom: 25px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    box-sizing: border-box;
+
+    background: #f7f7ff;
+
+    border: 1px solid #e4e7f5;
+    border-radius: 16px;
+
+    padding: 28px;
+
+    margin-bottom: 25px;
+
+    overflow-wrap: break-word;
+    word-break: break-word;
+
+    box-shadow:
+        0 5px 15px rgba(15, 23, 42, 0.04);
 }
 
 .question-card h3 {
-  color: #6366f1;
-  margin-bottom: 15px;
-  font-size: 22px;
+    color: #6366f1;
+
+    margin: 0 0 15px;
+
+    font-size: 22px;
 }
 
 .question-card p {
-  font-size: 20px;
-  color: #0f172a;
-  line-height: 1.8;
+    margin: 0;
+
+    font-size: 20px;
+    color: #0f172a;
+
+    line-height: 1.8;
+
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
-/* Textarea */
-
 .interview-card textarea {
-  width: 100%;
-  min-height: 220px;
-  padding: 18px;
-  font-size: 16px;
-  border: 1px solid #d1d5db;
-  border-radius: 12px;
-  resize: vertical;
-  outline: none;
-  transition: 0.3s;
-  box-sizing: border-box;
+    width: 100%;
+    min-height: 220px;
+
+    box-sizing: border-box;
+
+    padding: 18px;
+
+    font-size: 16px;
+    line-height: 1.6;
+
+    background: #ffffff;
+
+    border: 1px solid #dbe2ea;
+    border-radius: 12px;
+
+    resize: vertical;
+
+    outline: none;
+
+    transition: all 0.25s ease;
+}
+
+.interview-card textarea:hover {
+    border-color: #a78bfa;
 }
 
 .interview-card textarea:focus {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-}
+    border-color: #6366f1;
 
-/* Character Count */
+    box-shadow:
+        0 0 0 3px rgba(99, 102, 241, 0.12),
+        0 6px 15px rgba(99, 102, 241, 0.06);
+}
 
 .character-count {
-  margin-top: 10px;
-  text-align: right;
-  color: #64748b;
-  font-size: 14px;
+    margin-top: 10px;
+
+    text-align: right;
+
+    color: #64748b;
+
+    font-size: 14px;
 }
 
-/* Buttons */
-
 .button-group {
-  margin-top: 35px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    margin-top: 35px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
 }
 
 .button-group button {
-  width: 160px;
-  height: 48px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-  transition: 0.3s;
+    width: 160px;
+    height: 48px;
+
+    border: none;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
 }
 
 .button-group button:first-child {
-  background: #e2e8f0;
-  color: #334155;
+    background: #eef0f5;
+    color: #334155;
 }
 
 .button-group button:first-child:hover:not(:disabled) {
-  background: #cbd5e1;
+    background: #e2e5ec;
+
+    transform: translateY(-2px);
 }
 
 .next-btn,
 .finish-btn {
-  background: #6366f1;
-  color: white;
+    background: linear-gradient(
+        135deg,
+        #6366f1,
+        #8b5cf6
+    );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 7px 18px rgba(99, 102, 241, 0.18);
 }
 
 .next-btn:hover,
 .finish-btn:hover {
-  background: #4f46e5;
+    background: linear-gradient(
+        135deg,
+        #4f46e5,
+        #7c3aed
+    );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 22px rgba(99, 102, 241, 0.25);
 }
 
 .button-group button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
-/* Mobile */
-
 @media (max-width: 768px) {
+    .interview-container {
+        padding: 30px 15px;
+    }
 
-  .interview-card {
-    padding: 25px;
-  }
+    .interview-card {
+        max-width: 700px;
+        min-height: auto;
+        padding: 25px;
+    }
 
-  .interview-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
+    .interview-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
 
-  .question-card p {
-    font-size: 17px;
-  }
+    .interview-header h2 {
+        font-size: 26px;
+    }
 
-  .button-group {
-    flex-direction: column;
-    gap: 15px;
-  }
+    .question-card {
+        padding: 22px;
+    }
 
-  .button-group button {
-    width: 100%;
-  }
+    .question-card p {
+        font-size: 17px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .button-group button {
+        width: 100%;
+    }
 }
