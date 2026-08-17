@@ -5,6 +5,7 @@ import "./ResumeLoading.css";
 import { ImSpinner8 } from "react-icons/im";
 import { FaCheckCircle } from "react-icons/fa";
 import { FiCircle } from "react-icons/fi";
+import { IoArrowBack } from "react-icons/io5";
 
 function ResumeLoading() {
     const navigate = useNavigate();
@@ -71,7 +72,13 @@ function ResumeLoading() {
 
     return (
         <div className="loading-container">
-
+            <button
+                className="back-btn"
+                onClick={() => navigate("/dashboard")}
+                title="Back to Dashboard"
+            >
+                <IoArrowBack />
+            </button>
             <div className="loading-card">
 
                 <div className="loader">
