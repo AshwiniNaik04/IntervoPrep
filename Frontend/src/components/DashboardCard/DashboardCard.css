@@ -1,106 +1,60 @@
-.dashboard-card{
-    background:#ffffff;
 
-    border:1px solid #e2e8f0;
-
-    border-radius:20px;
-
-    padding:30px;
-
-    display:flex;
-    flex-direction:column;
-
-    transition:.3s;
-
-    box-shadow:0 8px 24px rgba(15,23,42,.08);
-
-    position:relative;
-
-    overflow:hidden;
+.dashboard-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 230px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+  transition: none;
 }
 
-.dashboard-card:hover{
-
-    transform:translateY(-6px);
-
-    border-color:#c7d2fe;
-
-    box-shadow:0 15px 35px rgba(2, 3, 70, 485);
-
+.dashboard-card:hover {
+  transform: none;
+  box-shadow: none;
 }
 
-.dashboard-card::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:-80px;
-    right:-80px;
-
-    width:180px;
-    height:180px;
-
-    background:rgba(99,102,241,.08);
-
-    border-radius:50%;
-
-    filter:blur(60px);
-
-    pointer-events:none;
-
+.dashboard-card::before {
+  display: none;
 }
 
-.dashboard-card h3{
-
-    color:#0f172a;
-
-    font-size:1.4rem;
-
-    margin-bottom:15px;
-
-    font-weight:700;
-
+.dashboard-card h3 {
+  color: #292237;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0 0 11px;
 }
 
-.dashboard-card p{
-
-    color:#64748b;
-
-    line-height:1.7;
-
-    flex:1;
-
-    margin-bottom:25px;
-
+.dashboard-card p {
+  color: #817b8c;
+  font-size: 13px;
+  line-height: 1.8;
+  flex: 1;
+  margin: 0 0 23px;
 }
 
-.dashboard-card button{
-
-    border:none;
-
-    border-radius:12px;
-
-    padding:14px;
-
-    cursor:pointer;
-
-    font-size:15px;
-
-    font-weight:600;
-
-    color:white;
-
-    background:linear-gradient(135deg,#6366f1,#8b5cf6);
-
-    transition:.3s;
-
+.dashboard-card button {
+  width: 100%;
+  min-height: 44px;
+  border: none;
+  border-radius: 9px;
+  padding: 12px 14px;
+  color: white;
+  background: #6745a1;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.dashboard-card button:hover{
-
-    transform:translateY(-2px);
-
-    box-shadow:0 10px 20px rgba(99,102,241,.25);
-
+.dashboard-card button:hover {
+  background: #50317f;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 16px rgba(103, 69, 161, 0.18);
 }

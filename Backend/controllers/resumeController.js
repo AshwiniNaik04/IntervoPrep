@@ -2,10 +2,16 @@ const Resume = require("../models/Resume");
 const cloudinary = require("../config/cloudinary");
 const axios = require("axios");
 const pdfParse = require("pdf-parse");
-const { generateResumeQuestions } = require("../utils/geminiResume");
+
+const {
+    validateResume,
+    generateResumeQuestions
+} = require("../utils/geminiResume");
+
 
 const uploadResume = async (req, res) => {
     try {
+
         if (!req.file) {
             return res.status(400).json({
                 success: false,
@@ -13,12 +19,66 @@ const uploadResume = async (req, res) => {
             });
         }
 
+        // Download uploaded PDF from Cloudinary
+        const pdfResponse = await axios.get(req.file.path, {
+            responseType: "arraybuffer",
+        });
+
+        // Extract text from PDF
+        const pdfData = await pdfParse(pdfResponse.data);
+
+        const text = pdfData.text.trim();
+
+        // Check whether readable text was extracted
+        if (!text || text.length < 200) {
+
+            if (req.file.filename) {
+                await cloudinary.uploader.destroy(
+                    req.file.filename,
+                    {
+                        resource_type: "raw",
+                    }
+                );
+            }
+
+            return res.status(400).json({
+                success: false,
+                message: "The uploaded document could not be read. Please upload a text-based resume PDF.",
+            });
+        }
+
+
+        // AI-based resume validation
+        const validation = await validateResume(text);
+
+        if (!validation.isResume) {
+
+            // Delete rejected document from Cloudinary
+            if (req.file.filename) {
+                await cloudinary.uploader.destroy(
+                    req.file.filename,
+                    {
+                        resource_type: "raw",
+                    }
+                );
+            }
+
+            return res.status(400).json({
+                success: false,
+                message: "The uploaded document does not appear to be a resume or CV. Please upload a valid resume.",
+            });
+        }
+
+
+        // Resume is valid
         let resume = await Resume.findOne({
             user: req.user.id,
         });
 
+
         if (resume) {
 
+            // Delete old resume
             if (resume.publicId) {
                 await cloudinary.uploader.destroy(
                     resume.publicId,
@@ -34,6 +94,7 @@ const uploadResume = async (req, res) => {
             await resume.save();
 
         } else {
+
             resume = await Resume.create({
                 user: req.user.id,
                 resumeUrl: req.file.path,
@@ -41,16 +102,35 @@ const uploadResume = async (req, res) => {
             });
         }
 
-        res.status(200).json({
+
+        return res.status(200).json({
             success: true,
             message: "Resume uploaded successfully.",
             resume,
         });
 
     } catch (error) {
+
         console.error(error);
 
-        res.status(500).json({
+        // Delete uploaded file if something fails
+        if (req.file?.filename) {
+            try {
+                await cloudinary.uploader.destroy(
+                    req.file.filename,
+                    {
+                        resource_type: "raw",
+                    }
+                );
+            } catch (deleteError) {
+                console.error(
+                    "Failed to delete uploaded file:",
+                    deleteError
+                );
+            }
+        }
+
+        return res.status(500).json({
             success: false,
             message: "Resume upload failed.",
         });
@@ -77,21 +157,7 @@ const generateResumeInterview = async (req, res) => {
 
         const pdfData = await pdfParse(pdfResponse.data);
 
-        const aiResponse = await generateResumeQuestions(pdfData.text);
-
-        let questions;
-
-        try {
-            questions = JSON.parse(aiResponse);
-        } catch (error) {
-            console.error("Gemini returned invalid JSON:");
-            console.error(aiResponse);
-
-            return res.status(500).json({
-                success: false,
-                message: "Failed to parse AI response.",
-            });
-        }
+        const questions = await generateResumeQuestions(pdfData.text);
 
         return res.status(200).json({
             success: true,

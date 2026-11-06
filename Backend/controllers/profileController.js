@@ -38,6 +38,7 @@ const getProfile = async (req, res) => {
                 averageScore,
                 bestScore,
                 resumeUploaded: !!resume,
+                resumeUrl: resume?.resumeUrl || null,
             },
         });
 

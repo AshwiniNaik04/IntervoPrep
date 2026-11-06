@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { IoArrowBack } from "react-icons/io5";
 import "./ResumeReady.css";
@@ -15,7 +15,31 @@ import {
 
 function ResumeReady() {
     const navigate = useNavigate();
+    const [resumeUrl, setResumeUrl] = useState("");
     const [showDeletePopup, setShowDeletePopup] = useState(false);
+    useEffect(() => {
+        const fetchProfile = async () => {
+            try {
+                const token = localStorage.getItem("token");
+
+                const response = await axios.get(
+                    "http://localhost:5000/api/profile",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+
+                setResumeUrl(response.data.profile.resumeUrl);
+            } catch (error) {
+                console.error("Failed to fetch resume:", error);
+            }
+        };
+
+        fetchProfile();
+    }, []);
+
     const handleDeleteResume = async () => {
         try {
             const token = localStorage.getItem("token");
@@ -102,9 +126,15 @@ function ResumeReady() {
 
                         <button
                             className="replace-btn"
-                            onClick={() => navigate("/resume")}
+                            onClick={() => {
+                                if (resumeUrl) {
+                                    window.open(resumeUrl, "_blank");
+                                } else {
+                                    toast.error("Resume is not available.");
+                                }
+                            }}
                         >
-                            Replace Resume
+                            View Resume
                         </button>
 
                         <button
