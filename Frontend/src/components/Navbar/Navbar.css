@@ -1,197 +1,251 @@
+
+/* ================= NAVBAR ================= */
+
 .navbar {
     width: 100%;
-    height: 64px;
-    padding: 0 40px;
+    height: 70px;
+    padding: 0 6%;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    background: #c5c8cb;
-    border-bottom: 1px solid #e2e8f0;
+    background: #ffffff;
+    border-bottom: 1px solid #eeeaf4;
 
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 100;
+
+    box-shadow: 0 2px 12px rgba(40, 25, 65, 0.035);
 }
 
-.logo {
-    font-size: 28px;
-    font-weight: 800;
-    cursor: pointer;
+/* ================= LOGO ================= */
 
-    background: linear-gradient(135deg, #301a57, #573c9b);
+.logo {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    cursor: pointer;
+    margin: 0;
+
+    background: linear-gradient(135deg, #352454, #7651b5);
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    transition: opacity 0.2s ease;
 }
+
+.logo:hover {
+    opacity: 0.8;
+}
+
+/* ================= PROFILE ================= */
 
 .profile-container {
     position: relative;
 }
 
 .profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 9px;
 
-    background: #f8fafc;
+    background: #f8f6fc;
+    border: 1px solid #e9e2f3;
 
-    border: 1px solid #e2e8f0;
+    padding: 9px 15px;
+    border-radius: 11px;
 
-    padding: 10px 18px;
-
-    border-radius: 12px;
-
-    font-size: 15px;
-
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 650;
 
     cursor: pointer;
+    color: #382653;
 
-    color: #0f172a;
-
-    transition: .25s;
+    transition: 0.2s ease;
 }
 
 .profile-btn:hover {
-
-    border-color: #6366f1;
-
-    background: #eef2ff;
-
+    background: #f0eafb;
+    border-color: #d7c6ee;
 }
+
+/* ================= PROFILE MENU ================= */
 
 .profile-menu {
     position: absolute;
-    color: black;
-    margin-top: 50px;
+    top: calc(100% + 10px);
     right: 0;
 
-    width: 180px;
+    width: 190px;
 
-    background: #fff;
+    background: #ffffff;
+    border: 1px solid #eeeaf4;
+    border-radius: 12px;
 
-    border: 1px solid #e2e8f0;
-    border-radius: 14px;
-
-    box-shadow: 0 10px 30px rgba(15, 23, 42, .12);
+    box-shadow: 0 12px 35px rgba(35, 22, 55, 0.12);
 
     overflow: hidden;
-
     z-index: 1000;
+
+    animation: menuAppear 0.18s ease;
 }
 
 .menu-item {
-    padding: 14px 18px;
+    padding: 13px 17px;
+
     cursor: pointer;
+    color: #393044;
+
+    font-size: 13px;
+    font-weight: 550;
+
     transition: background 0.2s ease;
 }
 
 .menu-item:hover {
-    background: #f8fafc;
+    background: #f7f4fc;
+    color: #6745a1;
 }
 
-.profile-menu button {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    background: white;
-    cursor: pointer;
-    text-align: left;
-    font-size: 15px;
+@keyframes menuAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.profile-menu button:hover {
-    background: #f8fafc;
-}
+/* ================= LOGOUT MODAL ================= */
 
 .logout-overlay {
     position: fixed;
     inset: 0;
 
-    background: rgba(15, 23, 42, 0.45);
+    background: rgba(26, 18, 40, 0.48);
+    backdrop-filter: blur(3px);
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    padding: 20px;
+
     z-index: 2000;
 }
 
 .logout-modal {
-    width: 360px;
+    width: 100%;
+    max-width: 370px;
 
     background: #ffffff;
+    border: 1px solid #eeeaf4;
 
     border-radius: 18px;
+    padding: 29px;
 
-    padding: 28px;
-
-    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2);
+    box-shadow: 0 20px 55px rgba(25, 15, 45, 0.2);
 
     animation: popup 0.2s ease;
 }
 
 .logout-modal h3 {
-    color: #0f172a;
-    font-size: 22px;
-    margin-bottom: 10px;
+    color: #292237;
+    font-size: 21px;
+    font-weight: 750;
+    margin: 0 0 10px;
 }
 
 .logout-modal p {
-    color: #64748b;
-    line-height: 1.6;
+    color: #817b8c;
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 0;
 }
 
 .logout-actions {
     display: flex;
     justify-content: flex-end;
-    gap: 12px;
+    gap: 11px;
 
-    margin-top: 24px;
+    margin-top: 25px;
 }
 
 .cancel-btn,
 .confirm-logout-btn {
-    padding: 10px 20px;
+    padding: 10px 19px;
+    border-radius: 9px;
 
-    border-radius: 10px;
-
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 650;
 
     cursor: pointer;
+    transition: 0.2s ease;
 }
 
 .cancel-btn {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    color: #334155;
+    background: #f8f7fa;
+    border: 1px solid #e9e5ee;
+    color: #50475e;
+}
+
+.cancel-btn:hover {
+    background: #efedf3;
 }
 
 .confirm-logout-btn {
     border: none;
-
-    background: linear-gradient(135deg,
-            #cc2121,
-            #d71818);
-
+    background: #c83b46;
     color: white;
 }
 
-.cancel-btn:hover {
-    background: #f1f5f9;
+.confirm-logout-btn:hover {
+    background: #ad2935;
+    box-shadow: 0 6px 15px rgba(200, 59, 70, 0.2);
 }
 
-.confirm-logout-btn:hover {
-    box-shadow: 0 8px 20px rgb(210, 25, 25);
-}
+/* ================= ANIMATION ================= */
 
 @keyframes popup {
     from {
         opacity: 0;
-        transform: scale(0.95);
+        transform: scale(0.96);
     }
 
     to {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 650px) {
+    .navbar {
+        height: 64px;
+        padding: 0 18px;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .profile-btn {
+        padding: 8px 11px;
+        font-size: 12px;
+    }
+
+    .profile-menu {
+        width: 170px;
+    }
+
+    .logout-modal {
+        padding: 24px;
     }
 }

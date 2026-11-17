@@ -7,147 +7,234 @@ import DashboardCard from "../components/DashboardCard/DashboardCard";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const navigate = useNavigate();
-  const [resumeUploaded, setResumeUploaded] = useState(false);
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    const checkResume = async () => {
-      try {
-        const token = localStorage.getItem("token");
+    const [resumeUploaded, setResumeUploaded] = useState(false);
 
-        await axios.get(
-          "http://localhost:5000/api/resume",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+    const user = (() => {
+        try {
+            return JSON.parse(localStorage.getItem("user") || "null");
+        } catch {
+            return null;
+        }
+    })();
 
-        setResumeUploaded(true);
-      } catch (error) {
-        setResumeUploaded(false);
-      }
-    };
+    const firstName = user?.name?.trim().split(/\s+/)[0] || "there";
 
-    checkResume();
-  }, []);
+    useEffect(() => {
+        const checkResume = async () => {
+            try {
+                const token = localStorage.getItem("token");
 
-  return (
-    <>
-      <Navbar />
+                const response = await axios.get(
+                    "http://localhost:5000/api/resume",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
 
-      <main className="dashboard">
-        <div className="dashboard-content">
+                setResumeUploaded(true);
+            } catch (error) {
+                setResumeUploaded(false);
+            }
+        };
 
-          {/* Hero section */}
+        checkResume();
+    }, []);
 
-          <section className="dashboard-hero">
-            <div className="hero-content">
-              <span className="hero-tag">
-                YOUR PREPARATION SPACE
-              </span>
+    return (
+        <>
+            <Navbar />
 
-              <h1>
-                Welcome back, {user?.name?.trim().split(/\s+/)[0] || "there"} 👋
-              </h1>
+            <main className="dashboard">
+                <div className="dashboard-content">
 
-              <p>
-                Ready to ace your next interview?
-                Practice with AI-powered interviews, prepare using
-                your resume, and build confidence for your dream job.
-              </p>
-            </div>
+                    {/* Welcome Section */}
 
-            <div className="hero-decoration">
-              <div className="hero-circle hero-circle-one"></div>
-              <div className="hero-circle hero-circle-two"></div>
+                    <section className="dashboard-hero">
 
-              <div className="hero-floating-card">
-                <span className="floating-icon">✦</span>
-                <div>
-                  <strong>Practice. Improve.</strong>
-                  <small>Be interview ready.</small>
+                        <div className="hero-content">
+
+                            <span className="hero-tag">
+                                <span className="hero-tag-dot"></span>
+                                YOUR PERSONAL PREPARATION SPACE
+                            </span>
+
+                            <h1>
+                                Welcome back, {firstName}!
+                                <span className="welcome-wave"> 👋</span>
+                            </h1>
+
+                            <p>
+                                Your next opportunity starts with preparation.
+                                Practice with AI, strengthen your resume,
+                                and build confidence for every interview.
+                            </p>
+
+                        </div>
+
+                        <div className="hero-decoration">
+                            <div className="hero-circle hero-circle-one"></div>
+                            <div className="hero-circle hero-circle-two"></div>
+                            <div className="hero-circle hero-circle-three"></div>
+
+                            <div className="hero-floating-card">
+                                <span className="floating-icon">✦</span>
+
+                                <div>
+                                    <strong>Practice. Improve. Succeed.</strong>
+                                    <small>Your interview journey starts here.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+
+
+                    {/* Preparation Workspace */}
+
+                    <section className="dashboard-features">
+
+                        <div className="section-heading">
+                            <div>
+                                <span className="section-eyebrow">
+                                    GET STARTED
+                                </span>
+
+                                <h2>Your Preparation Workspace</h2>
+
+                                <p>
+                                    Everything you need to prepare for your next interview.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div className="dashboard-grid">
+
+                            {/* AI Interview */}
+
+                            <div className="dashboard-action">
+
+                                <div className="action-top">
+                                    <div className="action-icon interview-icon">
+                                        ✦
+                                    </div>
+
+                                    <span className="action-label interview-label">
+                                        PRACTICE
+                                    </span>
+                                </div>
+
+                                <DashboardCard
+                                    title="AI Interview"
+                                    description="Practice role-based technical interviews with AI-generated questions and personalized feedback."
+                                    buttonText="Start Interview"
+                                    onClick={() => navigate("/interview-setup")}
+                                />
+
+                            </div>
+
+
+                            {/* Resume */}
+
+                            <div className="dashboard-action">
+
+                                <div className="action-top">
+                                    <div className="action-icon resume-icon">
+                                        ▤
+                                    </div>
+
+                                    <span className="action-label resume-label">
+                                        RESUME
+                                    </span>
+                                </div>
+
+                                <DashboardCard
+                                    title={resumeUploaded ? "Resume Ready" : "Resume Analyzer"}
+                                    description={
+                                        resumeUploaded
+                                            ? "Your resume is uploaded. Generate personalized interview questions based on your experience."
+                                            : "Upload and analyze your resume to prepare for questions about your skills and projects."
+                                    }
+                                    buttonText={
+                                        resumeUploaded
+                                            ? "Generate Interview"
+                                            : "Upload Resume"
+                                    }
+                                    onClick={() =>
+                                        navigate(
+                                            resumeUploaded
+                                                ? "/resume-ready"
+                                                : "/resume"
+                                        )
+                                    }
+                                />
+
+                            </div>
+
+
+                            {/* Interview History */}
+
+                            <div className="dashboard-action">
+
+                                <div className="action-top">
+                                    <div className="action-icon history-icon">
+                                        ↗
+                                    </div>
+
+                                    <span className="action-label history-label">
+                                        PROGRESS
+                                    </span>
+                                </div>
+
+                                <DashboardCard
+                                    title="Interview History"
+                                    description="Explore your previous interview sessions, revisit feedback, and track your preparation journey."
+                                    buttonText="View History"
+                                    onClick={() => navigate("/history")}
+                                />
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    {/* Preparation Tip */}
+
+                    <section className="dashboard-tip">
+
+                        <div className="tip-icon">
+                            ✨
+                        </div>
+
+                        <div className="tip-content">
+                            <h3>Small steps lead to big improvements.</h3>
+
+                            <p>
+                                Make interview preparation a habit.
+                                Practice regularly, review your feedback,
+                                and keep improving one interview at a time.
+                            </p>
+                        </div>
+
+                        <button
+                            className="tip-button"
+                            onClick={() => navigate("/interview-setup")}
+                        >
+                            Start Practicing <span>→</span>
+                        </button>
+
+                    </section>
+
                 </div>
-              </div>
-            </div>
-          </section>
-
-
-          {/* Main features */}
-          <section className="dashboard-features">
-
-
-            <div className="dashboard-grid">
-
-              <div className="dashboard-action">
-                <div className="action-icon interview-icon">
-                  ✦
-                </div>
-
-                <span className="action-label">
-                  PRACTICE
-                </span>
-
-                <DashboardCard
-                  title="AI Interview"
-                  description="Practice role-based interviews with AI and improve your interview skills."
-                  buttonText="Start Interview"
-                  onClick={() => navigate("/interview-setup")}
-                />
-              </div>
-
-              <div className="dashboard-action">
-                <div className="action-icon resume-icon">
-                  ▤
-                </div>
-
-                <span className="action-label">
-                  RESUME
-                </span>
-
-                {resumeUploaded ? (
-                  <DashboardCard
-                    title="Resume Uploaded"
-                    description="Your resume is ready. Generate personalized interview questions based on your experience."
-                    buttonText="Generate Resume Interview"
-                    onClick={() => navigate("/resume-ready")}
-                  />
-                ) : (
-                  <DashboardCard
-                    title="Resume"
-                    description="Upload and analyze your resume to prepare for questions related to your skills and projects."
-                    buttonText="Upload Resume"
-                    onClick={() => navigate("/resume")}
-                  />
-                )}
-              </div>
-
-              <div className="dashboard-action">
-                <div className="action-icon history-icon">
-                  ↗
-                </div>
-
-                <span className="action-label">
-                  YOUR ACTIVITY
-                </span>
-
-                <DashboardCard
-                  title="Interview History"
-                  description="Revisit your previous interviews and review your preparation journey."
-                  buttonText="View History"
-                  onClick={() => navigate("/history")}
-                />
-              </div>
-
-            </div>
-          </section>
-
-        </div>
-      </main>
-    </>
-  );
+            </main>
+        </>
+    );
 }
 
 export default Dashboard;

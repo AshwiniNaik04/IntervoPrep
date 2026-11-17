@@ -8,7 +8,7 @@ function Interview() {
 
   const location = useLocation();
   const navigate = useNavigate();
-  
+
   const questions = location.state?.questions || [];
   const interviewType = location.state?.interviewType || "Role";
   const role = location.state?.role || "";
@@ -16,6 +16,7 @@ function Interview() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
   const [answers, setAnswers] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleAnswerChange = (e) => {
     setAnswers({
@@ -53,8 +54,11 @@ function Interview() {
       setCurrentQuestion(currentQuestion - 1);
     }
   };
-
   const handleFinish = async () => {
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
     try {
       const token = localStorage.getItem("token");
 
@@ -76,12 +80,13 @@ function Interview() {
 
       navigate("/result", {
         state: response.data,
+        replace: true,
       });
 
     } catch (error) {
       console.error(error);
-
       toast.error("Failed to evaluate interview.");
+      setIsSubmitting(false);
     }
   };
 
@@ -148,8 +153,9 @@ function Interview() {
             <button
               className="finish-btn"
               onClick={handleFinish}
+              disabled={isSubmitting}
             >
-              Finish Interview
+              {isSubmitting ? "Evaluating..." : "Finish Interview"}
             </button>
           ) : (
             <button

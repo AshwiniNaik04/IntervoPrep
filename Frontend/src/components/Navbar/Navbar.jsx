@@ -30,7 +30,7 @@ function Navbar() {
                         className="profile-btn"
                         onClick={() => setShowMenu(!showMenu)}
                     >
-                        👤 {user?.name} ▼
+                        👤 {user?.name?.trim().split(/\s+/)[0] || "Profile"} ▼
                     </button>
 
                     {showMenu && (
